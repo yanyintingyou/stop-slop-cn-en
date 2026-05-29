@@ -4,12 +4,8 @@ description: Use when editing Chinese or bilingual prose to remove AI-sounding p
 version: 1.0.0
 author: Adapted for Hermes Agent by Wenyu He / Hermes Agent; original concept by Hardik Pandya
 license: MIT
-metadata:
-  hermes:
-    tags: [writing, editing, chinese, humanize, anti-ai-slop, hermes, prose]
-    category: creative
-    homepage: https://github.com/hardikpandya/stop-slop
-    related_skills: [humanizer, academic-writing-assistant, academic-paragraph-refiner]
+platforms: [linux, macos, windows]
+metadata: {"hermes":{"category":"creative","tags":["writing","editing","chinese","humanize","anti-ai-slop","prose"],"related_skills":[]},"openclaw":{"homepage":"https://github.com/yanyintingyou/stop-slop-cn-en"},"compatibility":{"agents":["Hermes Agent","Claude Code","OpenAI Codex","OpenClaw","generic AgentSkills loaders"]}}
 ---
 
 # Stop Slop CN-EN：Hermes 中英双语去 AI 腔写作技能

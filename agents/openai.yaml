@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stop Slop CN-EN"
+  short_description: "AgentSkills-compatible skill: stop-slop-cn-en"
+  default_prompt: "Use $stop-slop-cn-en and follow SKILL.md."

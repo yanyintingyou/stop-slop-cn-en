@@ -6,11 +6,35 @@
 
 本项目**不是从零原创**，而是基于 Hardik Pandya 的开源项目 [hardikpandya/stop-slop](https://github.com/hardikpandya/stop-slop) 修改、重组和适配而来。原项目主要用于移除英文 AI 写作痕迹；本版本在保留其核心思想的基础上，改造成 Hermes 可加载的 Agent Skill，并加入中文写作、中英混合文本、中文财经/研究文章、微信公众号风格和 Hermes 工具使用规则。
 
+## 跨 Agent 兼容结构与安装
+
+本仓库现在使用双布局 skill 结构：
+
+```text
+repo/
+├── SKILL.md                                      # 跨 Agent 通用的权威说明
+├── AGENTS.md                                    # Codex / OpenAI 项目指令
+├── CLAUDE.md                                    # Claude Code 项目指令
+├── agents/openai.yaml                           # 可选 OpenAI agent 元数据
+└── skills/creative/stop-slop-cn-en/SKILL.md  # Hermes / OpenClaw 打包版 skill
+```
+
+根目录 `SKILL.md` 与 `skills/creative/stop-slop-cn-en/SKILL.md` 会保持字节级一致。若有脚本、参考文档或依赖文件，它们也会同时出现在两个可安装位置旁边。
+
+### 作为可复用 skill 安装
+
+- **Claude Code**：复制 `skills/creative/stop-slop-cn-en/` 到 `~/.claude/skills/creative/stop-slop-cn-en/`。
+- **OpenAI Codex / OpenAI agents**：在本仓库工作时保留 `AGENTS.md`；如需作为可复用 skill，复制 `skills/creative/stop-slop-cn-en/` 到 `~/.agents/skills/creative/stop-slop-cn-en/`。
+- **OpenClaw**：复制 `skills/creative/stop-slop-cn-en/` 到 `<workspace>/skills/creative/stop-slop-cn-en/`、`<workspace>/.agents/skills/creative/stop-slop-cn-en/` 或 `~/.openclaw/skills/creative/stop-slop-cn-en/`。
+- **Hermes Agent**：复制 `skills/creative/stop-slop-cn-en/` 到 `~/.hermes/skills/creative/stop-slop-cn-en/`，然后开启新的 Hermes 会话。
+- **通用 AgentSkills 加载器**：使用包含 `SKILL.md` 的目录；skill 名称为 `stop-slop-cn-en`。
+
+
 ## 相比原项目做了什么改造
 
 相较原版 `stop-slop`，本版本主要做了以下调整：
 
-- 改为 Hermes / Agent Skills 可识别的标准 skill tap 结构：`skills/stop-slop-cn-en/SKILL.md`。
+- 改为 Hermes / Agent Skills 可识别的标准 skill tap 结构：`skills/creative/stop-slop-cn-en/SKILL.md`。
 - 将原本偏英文的 AI 写作痕迹规则扩展为中文和中英混合文本可用的规则。
 - 增加中文 AI 腔高频短语清单，例如“赋能”“助力”“生态”“闭环”“高质量发展”“未来可期”等。
 - 增加中文结构问题识别，例如 PPT 式分层、机械三段式、伪深度句式、万能结尾和过度格式化。
@@ -36,7 +60,7 @@
 ## 仓库结构
 
 ```text
-skills/stop-slop-cn-en/
+skills/creative/stop-slop-cn-en/
 ├── SKILL.md
 └── references/
     ├── phrases-cn.md
@@ -52,7 +76,7 @@ skills/stop-slop-cn-en/
 把 `skills/stop-slop-cn-en` 复制到：
 
 ```bash
-~/.hermes/skills/stop-slop-cn-en
+~/.hermes/skills/creative/stop-slop-cn-en
 ```
 
 然后新开一个 Hermes 会话，或在对话中加载：
